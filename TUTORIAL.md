@@ -32,7 +32,51 @@ We want to run our workload on AWS, GCP and Azure.
 
 # 2 Multi-Cloud implementation patterns (and their challenges)
 
-## 1. 
+## 1. One home cloud + specific services
+
+You run your application primarily in one cloud and consume specific services from others.  
+Meaning your main cloud provider does not host your entire application, only most of it.  
+
+This means your application code needs different SDKs, one for each cloud provider.  
+Each SDK has different patterns, different authentication methods, different error handling.  
+
+This has two direct consequences:
+1) your code becomes more complex because you're integrating multiple cloud platforms in your application
+2) in addition to this complexity, you need to manage different authentication methods and as many credentials
+
+### How do you handle networking between clouds?  
+
+For example, when your application running on AWS calls Google Cloud BigQuery service, how does that request goes over the network?  
+- is it calling it over the public internet? Which is slow and expensive
+- or do you set up a private connection between your AWS and Google Cloud? which requires some complex network configuration
+
+## 2. Full application in multiple clouds
+
+You run copies of your entire application in multiple clouds.  
+Advantages: resilience and fault tolerance  
+
+If one cloud provider has a major outage, your application can fail over to another cloud and keep serving users without having any downtime.  
+
+What this means in practice is that you're going to need compute infrastructure in both clouds:  
+- For example, if you're using K8s, you'll need EKS cluster on AWS and GKE cluster on Google Cloud.  
+- For your VMs, you'll need EC2 instances on AWS, and Compute Engine instances on GCP.  
+
+You'll also need to configure networking in both clouds:  
+- You'll need VPCs on AWS with subnets, AWS security groups, AWS load balancers
+- You'll also need VPCs on Google Cloud, with their own subnets, GCP firewall rules, GCP load balancers
+
+Finally, we have identity and access management (IAM): defining permissions and how different services can be accessed securely:
+- on AWS, you'll need to set up IAM roles and policies
+- on GCP, you'll have to set up service accounts and IAM permissions
+
+If you're using **Terraform**, you'll need to have one configuration for your AWS infrastructure and one for your GCP infrastructure.  
+
+And most importantly, you'll need **global traffic management**.  
+You'll need a way to route user traffic to the right cloud:
+- maybe use DNS-based failover: if one cloud is down, DNS automatically routes traffic to another
+- maybe use a global load balancer that sits in front of both clouds, which adds another layer of complexity
+
+
 
 ---
-4/39
+8/39
