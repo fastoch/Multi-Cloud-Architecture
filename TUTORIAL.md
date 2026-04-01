@@ -103,5 +103,27 @@ This is Control Plane's solution for managing credentials for not only different
 This allows your microservices to not have cloud-specific credentials.  
 They don't have AWS keys or GCP service account files, instead they authenticate with control plane using a **universal identity**.
 
+### Example scenario
+
+Let's say your application needs to read a file from AWS S3.  
+Normally, your app would need AWS credentials, such as an access key and secret key, you would need to manage these credentials, rotate them, and keep them secure.  
+
+With Control Plane, your application has a universal cloud identity (UCI).  
+When it makes a request to read from S3, it authenticates using its UCI.  
+Control Plane receives this request, translates the UCI into temporary AWS credentials, makes the request to S3 and returns the response to your application.  
+
+Your app doesn't even know that this translation happened. From its perspective, it authenticated once and got the data.  
+And the same application using the same Control Plane identity can now access other services from other cloud providers.  
+The main advantage is that your app doesn't have to embed cloud-specific secrets. Control Plane maps your app's UCI to the right cloud credentials behind the scenes.  
+
+## 2. Service Composition across Clouds
+
+With Control Plane, you can mix & match services from different Clouds in the same application.  
+
+### Example scenario
+
+
+
+
 ---
-11/39
+12/39
