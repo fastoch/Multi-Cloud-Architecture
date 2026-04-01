@@ -88,5 +88,20 @@ We need an abstraction layer that our application can communicate with, and that
 
 That's exactly where a tool called "**Control Plane**" comes in.  
 
+# How does Control Plane implement this abstraction?
+
+https://docs.controlplane.com/whatis  
+
+Control Plane is a multi-cloud management platform that lets teams provision, manage, and govern infrastructure across providers like AWS, Azure, and GCP from a single interface.  
+It uses a "Workspace" model to abstract underlying clouds, enabling policy enforcement, cost tracking, and secure access without vendor lock-in.  
+
+It sits on top of AWS, GCP, Azure, or any other cloud provider (even works with on-premises infrastructure).  
+
+## 1. Universal Cloud Identity
+
+This is Control Plane's solution for managing credentials for not only different cloud providers, but also for different services of those cloud providers.  
+This allows your microservices to not have cloud-specific credentials.  
+They don't have AWS keys or GCP service account files, instead they authenticate with control plane using a **universal identity**.
+
 ---
-10/39
+11/39
