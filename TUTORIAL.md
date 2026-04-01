@@ -114,7 +114,7 @@ Control Plane receives this request, translates the UCI into temporary AWS crede
 
 Your app doesn't even know that this translation happened. From its perspective, it authenticated once and got the data.  
 And the same application using the same Control Plane identity can now access other services from other cloud providers.  
-The main advantage is that your app doesn't have to embed cloud-specific secrets. Control Plane maps your app's UCI to the right cloud credentials behind the scenes.  
+Your app doesn't have to embed cloud-specific secrets. Control Plane maps your app's UCI to the right cloud credentials behind the scenes.  
 
 ## 2. Service Composition across Clouds
 
@@ -122,8 +122,28 @@ With Control Plane, you can mix & match services from different Clouds in the sa
 
 ### Example scenario
 
+Let's say you're building an e-commerce application.  
+You decide to run the front end on AWS because you're already using AWS CloudFront and CDN.  
+But you want to run the recommendation engine on Google Cloud because you're using BigQuery to analyze customer behavior and train your models.  
+And you store product images on Azure blob storage because you negotiated a good price with Microsoft.  
+
+These services need to all work together:
+- The frontend needs to call the recommendation engine
+- The recommendation engine needs to access product images
+- and so on...
+
+With Control Plane, you deploy all these services to one single platform.  
+And Control Plane handles the networking between clouds automatically, which removes a lot of complexity for Cloud architects and DevOps engineers!  
+
+## 3. Pre-integrated infrastructure stack
+
+Have you ever set up a K8s cluster and configured all these third-party services to make it production-ready?  
+Installing Istio, Vault, Prometheus, Grafana, cert-manager, etc.
+
+Control Plane has integrated all those capabilities into their platform.  
+So, when you provision a Kubernetes cluster, you're not starting from bare Kubernetes, all services quoted above come pre-integrated and configured.  
 
 
 
 ---
-12/39
+14/39
