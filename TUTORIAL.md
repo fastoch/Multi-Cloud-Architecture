@@ -138,12 +138,44 @@ And Control Plane handles the networking between clouds automatically, which rem
 ## 3. Pre-integrated infrastructure stack
 
 Have you ever set up a K8s cluster and configured all these third-party services to make it production-ready?  
-Installing Istio, Vault, Prometheus, Grafana, cert-manager, etc.
+Which implies installing Istio, Vault, Prometheus, Grafana, cert-manager, etc.
 
 Control Plane has integrated all those capabilities into their platform.  
-So, when you provision a Kubernetes cluster, you're not starting from bare Kubernetes, all services quoted above come pre-integrated and configured.  
+So that, when you provision a Kubernetes cluster, you're not starting from bare Kubernetes, all services quoted above come pre-integrated and configured.  
 
+When you deploy an application to the Control Plane platform: 
+- observability and metrics collection just works out of the box,
+- logs are automatically aggregated,
+- distributed tracing is automatically configured,
+- and you get dashboards showing everything that's happening in your application.
 
+Similarly, security policies just work: TLS encryption between services is automatic, and the same goes for certificate management.  
+You just define which services can talk to which other services, and Control Plane (CP) can enforce this using the built-in service mesh.  
+
+## 4. Optimizing Cloud Costs
+
+And finally, another huge benefit when using multi-cloud is the **cost optimization**.  
+Because, cloud costs, even on a single cloud platform, can get very complex, very fast.  
+
+CP actually gives you very precise control over resource allocation.  
+So, instead of saying "I need a T3.large instance" and then that instance runs all the time (whether you're using it or not, or using just 50% of it), 
+you basically say "my application needs 2 CPU cores and 4GB of memory", and CP provisions exactly that.  
+
+When your application needs more resources, CP scales it up. When it needs less, CP scales it down.  
+So you're not overprovisioning just because you can't manage resources granularly.  
+And you're not paying for idle capacity.  
+
+You provision exactly what you need and the CP platform adjusts it automatically based on actual needs.  
+CP claims that customers typically see 60 to 80% reduction in cloud compute costs compared to running and 
+overprovisioning their own K8s and surrounding infrastructure directly on the cloud providers platforms.  
+
+The savings come not because the underlying cloud services are cheaper, but because you're not wasting capacity 
+and paying for something you're not using, plus you're not paying for all the engineering overhead of stitching 
+everything together manually.  
+
+# Hands-On Demo: Multi-Cloud Deployment
+
+We're going to take an example application, which is a very simple JavaScript application, 
 
 ---
-14/39
+16/39
