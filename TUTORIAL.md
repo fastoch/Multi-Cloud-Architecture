@@ -81,9 +81,12 @@ You'll need a way to route user traffic to the right cloud:
 From the two patterns described in the previous section, the best solution is to manage two different cloud providers, such as AWS and GCP, and to have two separate Terraform codes, and so on.  
 
 But given the complexity induced by this solution, it would be nice to have an abstraction layer that simplifies things a little bit...  
+An asbtraction layer is some tool that hides the underlying complexity, like Docker abstracts away the need for OS-specific configuration when it comes to deploying applications.  
 
+To remove some of the complexity that is tied to multi-cloud architecture, we need a solution that prevents our application from having to deal with Cloud-specific APIs.  
+We need an abstraction layer that our application can communicate with, and that abstraction layer would handle the Cloud-specific details for us.  
 
-
+That's exactly where a tool called "**Control Plane**" comes in.  
 
 ---
-8/39
+10/39
