@@ -73,8 +73,15 @@ If you're using **Terraform**, you'll need to have one configuration for your AW
 
 And most importantly, you'll need **global traffic management**.  
 You'll need a way to route user traffic to the right cloud:
-- maybe use DNS-based failover: if one cloud is down, DNS automatically routes traffic to another
+- maybe use DNS-based failover: if one cloud is down, DNS automatically routes traffic to another cloud
 - maybe use a global load balancer that sits in front of both clouds, which adds another layer of complexity
+
+# Abstraction Layer
+
+From the two patterns described in the previous section, the best solution is to manage two different cloud providers, such as AWS and GCP, and to have two separate Terraform codes, and so on.  
+
+But given the complexity induced by this solution, it would be nice to have an abstraction layer that simplifies things a little bit...  
+
 
 
 
