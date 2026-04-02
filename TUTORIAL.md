@@ -175,7 +175,23 @@ everything together manually.
 
 # Hands-On Demo: Multi-Cloud Deployment
 
-We're going to take an example application, which is a very simple JavaScript application, 
+## Demo Overview
+
+In this demo, we're going to:
+- take an example application, which is a very simple JavaScript application with a NodeJS backend
+- dockerize it (building a Docker image out of it)
+- push the Docker image to the DockerHub registry
+- deploy that image on multiple cloud platforms at once (Azure, AWS and GCP) in Kubernetes clusters
+
+There are two interesting details about that application:
+- it connects to an S3 bucket (on Nana Janashia's AWS account) to fetch some data, and displays it in the UI
+- it also displays from which region of which cloud platform it's serving the data request
+
+## Application Overview
+
+- repo: https://gitlab.com/twn-youtube/multi-cloud-crash-course
+
+
 
 ---
-16/39
+18/39
