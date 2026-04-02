@@ -246,7 +246,7 @@ It's a very simple Dockerfile that does the following:
 - starts the application, which translates to running `node app.js`
 
 Let's build that image and push it to DockerHub:  
-
+22/39
 
 # Final thoughts
 
@@ -256,5 +256,3 @@ Your workloads continue running — Control Plane going down doesn't take your a
 Think of it like Kubernetes itself: if the API server goes down, your pods don't stop.  
 The infrastructure keeps serving traffic. You just temporarily lose the ability to make new changes until it recovers. 
 
----
-22/39
