@@ -198,6 +198,12 @@ The app fetches the contents from this bucket and sends them to the frontend.
 The frontend part is located inside the public folder of Nana's repo.  
 For each file stored in the bucket, the frontend displays their metadata.  
 
+The only dependencies for this app are specified in the package.json file.  
+
+## Step 1: Setting up the Multi-Cloud Infrastructure
+
+We need to provision the environment on which we want to deploy our dockerized application.  
+
 
 ---
 19/39
