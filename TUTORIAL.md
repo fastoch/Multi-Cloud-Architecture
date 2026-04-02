@@ -202,8 +202,51 @@ The only dependencies for this app are specified in the package.json file.
 
 ## Step 1: Setting up the Multi-Cloud Infrastructure
 
-We need to provision the environment on which we want to deploy our dockerized application.  
+We need to provision the environment on which we want to deploy our dockerized application.   
+
+In Control Plane UI, we're going to create a "GVC" = Global Virtual Cloud, which behaves like one unified cloud.  
+A GVC defines a single logical cloud environment that spans across multiple regions and/or multiple cloud providers.  
+
+When creating a GVC, we name it, add a description, and then we go to "Locations" to select different locations on different cloud providers.  
+There, we're going to select 3 different cloud providers and the locations that suit our needs.  
+
+When we click on Create to create our GVC, Control Plane will provision selected locations for us, without any setup effort.  
+So we can get started without having to connect our own cloud providers.  
+
+And just like that, we have a global cloud that is made up of multiple cloud providers in different regions.  
+Of course, there's a lot of technical complexity behind that apparent simplicity.  
+
+Our infrastructure is provisioned by CP in the background, including all necessary setups:
+- it creates VPCs and VNets (Virtual Private Clouds and Virtual Networks)
+- it creates subnets
+- it configures routing tables
+- it creates security groups/firewall rules
+- it provisons Kubernetes clusters
+- it deploys load balancers
+- it configures autoscaling groups
+
+Control Plane orchestrates an unlimited number of hardened, security-isolated Kubernetes clusters in all regions and for all major clouds.  
+
+Our infrastructure and Kubernetes clusters are provisioned on these underlying cloud providers with all the settings required, so that 
+we can literally throw our Docker containers into it and it's going to run them in Kubernetes clusters.  
+
+## Step 2: Deploying the Application
+
+Now, let's dockerize our application.  
+For that, we need to build a Docker image from which we'll be able to spin up containers that will run our application.  
+
+The Dockerfile that will build the Docker image for our app can be found in Nana's repo: https://gitlab.com/twn-youtube/multi-cloud-crash-course  
+
+It's a very simple Dockerfile that does the following:
+- copies the package.json file to an Alpine Linux instance that has NodeJS installed
+- uses that file to install production dependencies
+- copies the NodeJS backend code
+- copies the frontend code ("public" folder)
+- exposes port 8080 (which is the port on which our app is listening, as defined in the backend code) 
+- starts the application, which translates to running `node app.js`
+
+Let's build that image and push it to DockerHub:  
 
 
 ---
-19/39
+22/39
