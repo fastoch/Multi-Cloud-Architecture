@@ -191,7 +191,13 @@ There are two interesting details about that application:
 
 - repo: https://gitlab.com/twn-youtube/multi-cloud-crash-course
 
+At the root of Nana's project, we have an app.js file that contains the backend code.  
+The only thing this application does is connecting to an S3 bucket (the bucket name is at line 16 in the app.js file).  
+The app fetches the contents from this bucket and sends them to the frontend.  
+
+The frontend part is located inside the public folder of Nana's repo.  
+For each file stored in the bucket, the frontend displays their metadata.  
 
 
 ---
-18/39
+19/39
