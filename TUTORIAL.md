@@ -248,5 +248,13 @@ It's a very simple Dockerfile that does the following:
 Let's build that image and push it to DockerHub:  
 
 
+# Final thoughts
+
+## What happens if Control Plane goes down ?
+
+Your workloads continue running — Control Plane going down doesn't take your app down with it.  
+Think of it like Kubernetes itself: if the API server goes down, your pods don't stop.  
+The infrastructure keeps serving traffic. You just temporarily lose the ability to make new changes until it recovers. 
+
 ---
 22/39
